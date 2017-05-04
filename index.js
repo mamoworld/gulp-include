@@ -69,7 +69,7 @@ module.exports = function (params) {
   }
 
   function processInclude(content, filePath, sourceMap) {
-    var matches = content.match(/^(\s+)?(\/\/|\/\*|\#|\<\!\-\-)(\s+)?=(\s+)?(include|require)(.+$)/mg);
+    var matches = content.match(/^(\s+)?(\/\/|\/\*|\#|\<\!\-\-)(\s+)?(=|#)(\s+)?(include|require)(.+$)/mg);
     var relativeBasePath = path.dirname(filePath);
 
     if (!matches) return {content: content, map: null};
@@ -113,7 +113,7 @@ module.exports = function (params) {
       // Remove beginnings, endings and trim.
       var includeCommand = matches[i]
         .replace(/\s+/g, " ")
-        .replace(/(\/\/|\/\*|\#|<!--)(\s+)?=(\s+)?/g, "")
+        .replace(/(\/\/|\/\*|\#|<!--)(\s+)?(=|#)(\s+)?/g, "")
         .replace(/(\*\/|-->)$/g, "")
         .replace(/['"]/g, "")
         .trim();
