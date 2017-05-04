@@ -163,7 +163,7 @@ module.exports = function (params) {
         var globbedFilePath = fileMatches[y];
 
         // If directive is of type "require" and file already included, skip to next.
-        if (includeType == "require" && includedFiles.indexOf(globbedFilePath) > -1) continue;
+        if ((includeType == "require" || params.includeOnlyOnce === true) && includedFiles.indexOf(globbedFilePath) > -1) continue;
 
         // If not in extensions, skip this file
         if (!inExtensions(globbedFilePath)) continue;
